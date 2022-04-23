@@ -6,6 +6,7 @@ url = "https://api.coindesk.com/v1/bpi/currentprice.json"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 bitcoin_data = JSON.parse(response)
+bitcoin_data_pretty = JSON.pretty_generate(response)
 # ----------------------
 
 # To run this code, be sure your current working directory
@@ -16,6 +17,7 @@ bitcoin_data = JSON.parse(response)
 # Ask the user for the current amount of Bitcoin that they own.
 # Using the Ruby hash `bitcoin_data`, display a summary of
 # Bitcoin data for the user. Something like the output below.
+#puts bitcoin_data[0]
 
 # Sample output:
 # 1 Bitcoin is valued at $41405.1046 USD.
@@ -29,4 +31,13 @@ bitcoin = gets.chomp
 bitcoin = bitcoin.to_f
 
 # 3. inspect the bitcoin_data hash
-# puts bitcoin_data
+puts JSON.pretty_generate(bitcoin_data)
+
+rate = bitcoin_data['bpi']['USD']['rate']
+float = bitcoin_data['bpi']['USD']['rate_float']
+total = float * bitcoin
+
+puts ("1 Bitcoin is valued at $#{rate} USD")
+puts ("Your Bitcoin is worth $#{total.round(4)} USD")
+#puts bitcoin_data_pretty
+

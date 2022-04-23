@@ -17,6 +17,14 @@ suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 # 3 of Clubs
 # ...
 
+suits.each{|suit| ranks.each{|rank| puts"#{rank} of #{suit}"}}
+
+for i in (1..5)
+    a = rand(1...ranks.length())
+    b = rand(1...suits.length())
+    puts "#{ranks[a]} of #{suits[b]}"
+end
+
 # CHALLENGE
 # Deal a poker hand. Shuffle the deck and "deal" (i.e. display) a 5 card hand (i.e. 5 cards from the deck).
 # You will want to look at the documentation for Arrays: https://ruby-doc.org/core-2.7.0/Array.html
